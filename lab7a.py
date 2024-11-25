@@ -20,6 +20,23 @@ def sum_times(t1, t2):
     sum.hour = t1.hour + t2.hour
     sum.minute = t1.minute + t2.minute
     sum.second = t1.second + t2.second
+
+        # Handle carry over for seconds
+    if sum.second >= 60:
+        extra_minutes = sum.second // 60
+        sum.second = sum.second % 60
+        sum.minute += extra_minutes
+
+    # Handle carry over for minutes
+    if sum.minute >= 60:
+        extra_hours = sum.minute // 60
+        sum.minute = sum.minute % 60
+        sum.hour += extra_hours
+
+    # Optional: Ensure the hour is within a valid range (0-23).
+    if sum.hour >= 24:
+        sum.hour = sum.hour % 24
+
     return sum
 
 def valid_time(t):
